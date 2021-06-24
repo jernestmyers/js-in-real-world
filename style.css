@@ -5,6 +5,10 @@ html {
   color: #5b5941;
 }
 
+header {
+  margin-bottom: 0.5em;
+}
+
 h1 {
   font-size: 5em;
   padding-left: 0.1em;
