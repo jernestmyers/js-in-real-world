@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>javascript in the real world</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <header id="page-header">
+      <h1 id="app-title">done.</h1>
+    </header>
+    <nav class="nav-menu">
+      <div class="nav-dropdown" id="nav-add-object-container">
+        <span class="nav-title" id="add-symbol">+</span>
+        <div class="toggle-dropdown" id="nav-add-object-dropdown">
+          <ul class="nav-list">
+            <li>+ task</li>
+            <li>+ project</li>
+          </ul>
+        </div>
+      </div>
+      <div class="nav-dropdown" id="nav-project-list-container">
+        <span class="nav-title">projects</span>
+        <div class="toggle-dropdown" id="nav-project-list-dropdown">
+          <ul class="nav-list square-dropdown">
+            <li>design mobile nav menu</li>
+            <li>design a form</li>
+          </ul>
+        </div>
+      </div>
+      <div id="nav-overview">
+        <span class="nav-title">overview</span>
+      </div>
+      <div class="nav-dropdown" id="nav-sort-dates-container">
+        <span class="nav-title">sort tasks</span>
+        <div class="toggle-dropdown" id="nav-sort-dates-dropdown">
+          <ul class="nav-list square-dropdown">
+            <li>due today</li>
+            <li>due this week</li>
+            <li>past due</li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <script src="./main.js"></script>
+  </body>
+</html>
