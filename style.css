@@ -64,6 +64,7 @@ li:active {
   padding-top: 0.2em;
   opacity: 0.9;
   border-radius: 0.1em;
+  z-index: 1;
 }
 
 .nav-dropdown:active .toggle-dropdown,
@@ -115,25 +116,17 @@ p:hover {
 }
 
 .images {
-  display: flex;
+  display: none;
   height: 475px;
-  /* opacity: 0; */
-  transition: opacity 2s ease-in-out;
-}
-
-.img-opacity {
-  opacity: 1;
-  /* opacity: 1; */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
 #slideshow-dot-nav {
   width: 100%;
-  /* align-content: center; */
   display: flex;
   justify-content: center;
   position: absolute;
-  /* margin: auto; */
-  /* left: center; */
   bottom: 0.2em;
 }
 
@@ -147,8 +140,4 @@ p:hover {
 
 .dot-nav:hover {
   background-color: #5b5941;
-}
-
-#dot1 {
-  /* background-color: #5b5941; */
 }

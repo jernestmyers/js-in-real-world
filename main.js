@@ -1,9 +1,10 @@
 const imageContainer = document.querySelector(`#image-container`);
 const imagesToDisplay = document.querySelectorAll(`.images`);
-const imageArray = Array.from(imagesToDisplay);
 const navigationDots = document.querySelectorAll(`.dot-nav`);
 
+// display default image onPageLoad
 navigationDots[0].style.backgroundColor = `#5b5941`;
+imagesToDisplay[0].setAttribute(`style`, `opacity: 1; display: flex`);
 
 const previousImage = document.querySelector(`#previous-img`);
 const nextImage = document.querySelector(`#next-img`);
@@ -11,29 +12,38 @@ const nextImage = document.querySelector(`#next-img`);
 previousImage.addEventListener(`click`, cycleImagesBackward);
 nextImage.addEventListener(`click`, cycleImagesForward);
 
+let imageIndex = 0;
+let myInterval = setInterval(cycleImagesForward, 5000);
+
 function cycleImagesBackward() {
-  const newFirstImage = imageArray.pop();
-  imageArray.splice(0, 0, newFirstImage);
-  repaintImageContainer();
+  autoSlide();
+  if (imageIndex === 0) {
+    imageIndex = 3;
+  } else {
+    imageIndex -= 1;
+  }
+  repaintImageContainer(imageIndex);
 }
 
 function cycleImagesForward() {
-  const newLastImage = imageArray.shift();
-  imageArray.push(newLastImage);
-  repaintImageContainer();
+  autoSlide();
+  if (imageIndex === 3) {
+    imageIndex = 0;
+  } else {
+    imageIndex += 1;
+  }
+  repaintImageContainer(imageIndex);
 }
 
 function repaintImageContainer(imageRef) {
-  while (imageContainer.firstChild) {
-    imageContainer.removeChild(imageContainer.firstChild);
-  }
-  if (!imageRef) {
-    imageContainer.appendChild(imageArray[0]);
-    fillNavigationDot(imageArray[0]);
-  } else {
-    imageContainer.appendChild(imagesToDisplay[imageRef - 1]);
-    fillNavigationDot(imagesToDisplay[imageRef - 1]);
-  }
+  imagesToDisplay.forEach((node) => {
+    node.removeAttribute(`style`);
+  });
+  imagesToDisplay[imageRef].style.display = `flex`;
+  setTimeout(function () {
+    imagesToDisplay[imageRef].style.opacity = 1;
+  });
+  fillNavigationDot(imagesToDisplay[imageRef]);
 }
 
 function fillNavigationDot(element) {
@@ -41,14 +51,18 @@ function fillNavigationDot(element) {
     node.removeAttribute(`style`);
   });
   const imageNumber = element.getAttribute(`id`).charAt(3);
-  console.log(imageNumber);
   navigationDots[imageNumber - 1].style.backgroundColor = `#5b5941`;
 }
 
 navigationDots.forEach((dot) => {
   dot.addEventListener(`click`, (e) => {
-    console.log(e.target.id);
-    imageReferenceNumber = e.target.id.charAt(3);
-    repaintImageContainer(imageReferenceNumber);
+    autoSlide();
+    imageIndex = e.target.id.charAt(3) - 1;
+    repaintImageContainer(imageIndex);
   });
 });
+
+function autoSlide() {
+  clearInterval(myInterval);
+  myInterval = setInterval(cycleImagesForward, 5000);
+}
